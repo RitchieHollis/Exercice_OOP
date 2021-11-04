@@ -8,11 +8,11 @@
 using namespace std;
 //szablony funkcji -> foremka do tworzenia funkcji
 
-template<typename T, typename T2> //T -> typ zmiennej
-T add(T var1, T2 var2) { // typ nazwa funkcji(parametry)
+//template<typename T, typename T2> //T -> typ zmiennej
+//T add(T var1, T2 var2) { // typ nazwa funkcji(parametry)
 
-    return var1 + var2; //typ zwracany jest przed nazwa, w tym przypadku 'T'
-}
+    //return var1 + var2; //typ zwracany jest przed nazwa, w tym przypadku 'T'
+//}
 /*
 template<>
 Point2D add(Point2D var1, Point2D var2) { //templatka dla klas, jesli nie mozna dac operatora
@@ -26,33 +26,55 @@ Point2D add(Point2D var1, Point2D var2) { //templatka dla klas, jesli nie mozna 
 
 i wtedy Point2D p_after_add = add(p,q)
 */
-/*
-typedef void null;
-template<typename O>
-null plus() {
-    system("cls");
-    O a, b;
-    cout << "Give me the coords for the first" << endl;
-    cin >> a;
-    cin >> b;
-    Point2D<O> p(a, b);
-    cout << "X: " << p.getX() << " Y: " << p.getY() << endl;                    W FAZIE TESTOW
 
+template<typename G>
+G add(G a, G b) {
+
+    return a + b;
+}
+
+template <typename O>
+O readValues(O val) {
+
+    while (!(cin >> val)) {
+        cout << "Tap a correct number" << endl;
+        cin.clear();
+        cin.ignore();
+    }
+    return val;
+}
+
+template<typename O>
+void giveCoords(O a, O b) {
+    
+    system("cls");
+    //First point
+    cout << "Give me the coords for the first" << endl;
+
+    a = readValues(a); //user give coord X for p
+    b = readValues(b); //user give coord Y for p
+
+    Point2D<O> p(a, b);
+    cout << "X: " << p.getX() << " Y: " << p.getY() << endl;                    
+    //Second point
     cout << "Give me the coords for the second" << endl;
-    cin >> a;
-    cin >> b;
+    
+    a = readValues(a); //user give coord X for q
+    b = readValues(b); //user give coord Y for q
+    
     Point2D<O> q(a, b);
     cout << "X: " << q.getX() << " Y: " << q.getY() << endl;
-
-    Point2D<O> p_after_add = p + q;
-    cout << "Results:" << endl;
+    //Adding two points
+    Point2D<O> p_after_add = add(p, q);
+    cout << "Results" << endl;
     cout << "X: " << p_after_add.getX() << " Y: " << p_after_add.getY() << endl;
    
 }
-*/
+
 int main(int argc, char* argv[])
 {
-  
+
+    /*
     cout << add(10.5, 5.485) << endl;
     cout << static_cast<int>(10.5) << endl; //rzutowanie statyczne
     cout << add<int, int>(10.5, 5) << endl; //rzutowanie poprzez templatke
@@ -69,116 +91,20 @@ int main(int argc, char* argv[])
 
         if (choice == "Int" || choice == "I" || choice == "int" || choice == "i") { //for an integer type
 
-            system("cls");
-            //first point
-            cout << "Give me the coords for the first" << endl;
-            int a, b;
-            while (!(cin >> a)) { 
-                cout << "Tap an integer" << endl;
-                cin.clear(); 
-                cin.ignore();
-            }
-            while (!(cin >> b)) { 
-                cout << "Tap an integer" << endl;
-                cin.clear(); 
-                cin.ignore(); 
-            }
-            Point2D<int> p(a, b);
-            cout << "X: " << p.getX() << " Y: " << p.getY() << endl;
-            //second point
-            cout << "Give me the coords for the second" << endl;
-            while (!(cin >> a)) {
-                cout << "Tap an integer" << endl;
-                cin.clear();
-                cin.ignore();
-            }
-            while (!(cin >> b)) {
-                cout << "Tap an integer" << endl;
-                cin.clear();
-                cin.ignore();
-            }
-            Point2D<int> q(a, b);
-            cout << "X: " << q.getX() << " Y: " << q.getY() << endl;
-            //adding two points
-            Point2D<int> p_after_add = p + q;
-            cout << "Results:" << endl;
-            cout << "X: " << p_after_add.getX() << " Y: " << p_after_add.getY() << endl;
+            int a = 0, b = 0;
+            giveCoords(a, b);
             break;
         }
         else if (choice == "Double" || choice == "D" || choice == "double" || choice == "d") { //for a double type
 
-            system("cls");
-            //first point
-            cout << "Give me the coords for the first" << endl;
-            double a, b;
-            while (!(cin >> a)) {
-                cout << "Tap a double" << endl;
-                cin.clear();
-                cin.ignore();
-            }
-            while (!(cin >> b)) {
-                cout << "Tap a double" << endl;
-                cin.clear();
-                cin.ignore();
-            }
-            Point2D<double> p(a, b);
-            cout << "X: " << p.getX() << " Y: " << p.getY() << endl;
-            //second point
-            cout << "Give me the coords for the second" << endl;
-            while (!(cin >> a)) {
-                cout << "Tap a double" << endl;
-                cin.clear();
-                cin.ignore();
-            }
-            while (!(cin >> b)) {
-                cout << "Tap a double" << endl;
-                cin.clear();
-                cin.ignore();
-            }
-            Point2D<double> q(a, b);
-            cout << "X: " << q.getX() << " Y: " << q.getY() << endl;
-            //adding two points
-            Point2D<double> p_after_add = p + q;
-            cout << "Results:" << endl;
-            cout << "X: " << p_after_add.getX() << " Y: " << p_after_add.getY() << endl;
+            double a = 0, b = 0;
+            giveCoords(a, b);
             break;
         }
         else if (choice == "Float" || choice == "F" || choice == "float" || choice == "f") { //for a floating type
 
-            system("cls");
-            //first point
-            cout << "Give me the coords for the first" << endl;
-            float a, b;
-            while (!(cin >> a)) {
-                cout << "Tap a floating number" << endl;
-                cin.clear();
-                cin.ignore();
-            }
-            while (!(cin >> b)) {
-                cout << "Tap a floating number" << endl;
-                cin.clear();
-                cin.ignore();
-            }
-            Point2D<float> p(a, b);
-            cout << "X: " << p.getX() << " Y: " << p.getY() << endl;
-            //second point
-            cout << "Give me the coords for the second" << endl;
-            while (!(cin >> a)) {
-                cout << "Tap a floating number" << endl;
-                cin.clear();
-                cin.ignore();
-            }
-            while (!(cin >> b)) {
-                cout << "Tap a floating number" << endl;
-                cin.clear();
-                cin.ignore();
-            }
-            Point2D<float> q(a, b);
-            cout << "X: " << q.getX() << " Y: " << q.getY() << endl;
-            //adding two points
-            Point2D<float> p_after_add = p + q;
-            cout << "Results:" << endl;
-            cout << "X: " << p_after_add.getX() << " Y: " << p_after_add.getY() << endl;
+            float a = 0, b = 0;
+            giveCoords(a, b);
             break;
         }
         else if (choice == "Exit" || choice == "exit" || choice == "e" || choice == "E") {
@@ -188,6 +114,7 @@ int main(int argc, char* argv[])
         }
         else { cout << "Error, try again" << endl; continue; }
     }
+    
     cout << "Press enter to quit" << endl;
     char c;
     cin >> c;
@@ -203,5 +130,4 @@ int main(int argc, char* argv[])
     //cout << "X: " << p_after_add.getX() << " Y: " << p_after_add.getY()<< endl;
 
 }
-
 
