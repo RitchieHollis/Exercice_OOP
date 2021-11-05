@@ -47,6 +47,9 @@ public:
 	void setY(T);
 	void setXY(T, T);
 	Point2D operator+(Point2D);
+	Point2D operator-(Point2D);
+	Point2D operator*(Point2D);
+	Point2D operator/(Point2D);
 };
 template <typename T>
 Point2D<T>::Point2D(T x, T y) : Point<T>(x) { //wywolywanie konstruktora Point dla Point2D -> kolejnosc matka->dziecko
@@ -85,7 +88,30 @@ Point2D<T> Point2D<T>::operator+ (Point2D obj) {
 	temp.setY(this->getY() + obj.getY());
 	return temp;
 }
+template <typename T>
+Point2D<T> Point2D<T>::operator- (Point2D obj) {
+	Point2D temp;
 
+	temp.setX(this->getX() - obj.getX()); //this->: aktualny obiekt
+	temp.setY(this->getY() - obj.getY());
+	return temp;
+}
+template <typename T>
+Point2D<T> Point2D<T>::operator* (Point2D obj) {
+	Point2D temp;
+
+	temp.setX(this->getX() * obj.getX()); //this->: aktualny obiekt
+	temp.setY(this->getY() * obj.getY());
+	return temp;
+}
+template <typename T>
+Point2D<T> Point2D<T>::operator/ (Point2D obj) {
+	Point2D temp;
+
+	temp.setX(this->getX() / obj.getX()); //this->: aktualny obiekt
+	temp.setY(this->getY() / obj.getY());
+	return temp;
+}
 /*
 class Point3D : public Point2D {
 
