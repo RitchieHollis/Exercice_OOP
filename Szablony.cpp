@@ -32,6 +32,21 @@ G add(G a, G b) {
 
     return a + b;
 }
+template<typename G>
+G sous(G a, G b) {
+
+    return a - b;
+}
+template<typename G>
+G multiply(G a, G b) {
+
+    return a * b;
+}
+template<typename G>
+G divide(G a, G b) {
+
+    return a / b;
+}
 
 template <typename O>
 O readValues(O val) {
@@ -64,16 +79,47 @@ void giveCoords(O a, O b) {
     
     Point2D<O> q(a, b);
     cout << "X: " << q.getX() << " Y: " << q.getY() << endl;
-    //Adding two points
-    Point2D<O> p_after_add = add(p, q);
-    cout << "Results" << endl;
-    cout << "X: " << p_after_add.getX() << " Y: " << p_after_add.getY() << endl;
+
+    cout << "What do you want to do (+ = addition, - = soustraction, * = mutliply, / = divide" << endl;
+    char act;
+    do {
+        cin >> act;
+        switch (act) {
+
+        case '+': {
+            Point2D<O> p_after_add;
+            p_after_add = add(p, q);
+            cout << "Results" << endl;
+            cout << "X: " << p_after_add.getX() << " Y: " << p_after_add.getY() << endl;
+        }break;
+        case '-': {
+            Point2D<O> p_after_sous;
+            p_after_sous = sous(p, q);
+            cout << "Results" << endl;
+            cout << "X: " << p_after_sous.getX() << " Y: " << p_after_sous.getY() << endl;
+        }break;
+        case '*': {
+            Point2D<O> p_after_multiply;
+            p_after_multiply = multiply(p, q);
+            cout << "Results" << endl;
+            cout << "X: " << p_after_multiply.getX() << " Y: " << p_after_multiply.getY() << endl;
+        }break;
+        case '/': {
+            Point2D<O> p_after_divide;
+            p_after_divide = divide(p, q);
+            cout << "Results" << endl;
+            cout << "X: " << p_after_divide.getX() << " Y: " << p_after_divide.getY() << endl;
+        }break;
+
+        default: cout << "Wrong sign" << endl; break;
+        }
+    } while (act != '+' && act != '-' && act != '*' && act != '/');
+    
    
 }
 
 int main(int argc, char* argv[])
 {
-
     /*
     cout << add(10.5, 5.485) << endl;
     cout << static_cast<int>(10.5) << endl; //rzutowanie statyczne
@@ -114,7 +160,12 @@ int main(int argc, char* argv[])
         }
         else { cout << "Error, try again" << endl; continue; }
     }
-    
+    /*
+    if (__cplusplus == 201703L) cout << "C++17\n";
+    else if (__cplusplus == 201402L) cout << "C++14\n";
+    else if (__cplusplus == 201103L) cout << "C++11\n";
+    else if (__cplusplus == 199711L) cout << "C++98\n";
+    else cout << "pre-standard C++\n"*/
     cout << "Press enter to quit" << endl;
     char c;
     cin >> c;
@@ -130,4 +181,3 @@ int main(int argc, char* argv[])
     //cout << "X: " << p_after_add.getX() << " Y: " << p_after_add.getY()<< endl;
 
 }
-
