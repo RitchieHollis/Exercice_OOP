@@ -105,10 +105,21 @@ void giveCoords(O a, O b) {
             cout << "X: " << p_after_multiply.getX() << " Y: " << p_after_multiply.getY() << endl;
         }break;
         case '/': {
-            Point2D<O> p_after_divide;
-            p_after_divide = divide(p, q);
-            cout << "Results" << endl;
-            cout << "X: " << p_after_divide.getX() << " Y: " << p_after_divide.getY() << endl;
+            try {
+                if (q.getX() == 0 || q.getY() == 0) { //Exception if coords of q have 0 as numbers. You can't divide by zero
+                    throw q;
+                }
+                Point2D<O> p_after_divide;
+                p_after_divide = divide(p, q);
+                cout << "Results" << endl;
+                cout << "X: " << p_after_divide.getX() << " Y: " << p_after_divide.getY() << endl;
+            }
+            catch (Point2D<O> exception) {
+                cout << "Don't divide by 0" << endl;
+                cout << "Use another operation (+, - or *)" << endl;
+                act = 'f'; //f 4 u brother
+                continue;
+            }
         }break;
 
         default: cout << "Wrong sign" << endl; break;
